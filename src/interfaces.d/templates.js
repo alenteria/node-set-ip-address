@@ -62,6 +62,7 @@ exports.format = (config) => {
 
   if (Array.isArray(config.bridge_ports)) {
     ret += `\n  bridge_ports ${config.bridge_ports.join(' ')}`
+    ret += `\n  pre-up { brctl addif ${config.interface} ${config.bridge_ports.join(' ')}; } || true`
   }
 
   return ret
